@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Exam Countdown & Study Planner</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<h1>Exam Countdown & Study Planner</h1>
+
+<form id="examForm">
+  <label for="examName">Exam Name</label>
+  <input type="text" id="examName" required />
+
+  <label for="examDate">Exam Date</label>
+  <input type="date" id="examDate" required />
+
+  <label for="topics">Study Topics (comma-separated)</label>
+  <input type="text" id="topics" placeholder="e.g., Algebra, Geometry" required />
+
+  <label for="subtopics">Sub-topics (comma-separated, per topic, semicolon-separated)</label>
+  <textarea id="subtopics" rows="3" placeholder="For example: topic1_sub1, topic1_sub2; topic2_sub1, topic2_sub2" required></textarea>
+
+  <label>Study Time Per Topic</label>
+  <div class="time-inputs">
+    <input type="number" id="topicHours" min="0" max="23" placeholder="Hours" required />
+    <input type="number" id="topicMinutes" min="0" max="59" placeholder="Minutes" required />
+  </div>
+
+  <label>Study Time Per Sub-topic</label>
+  <div class="time-inputs">
+    <input type="number" id="subtopicHours" min="0" max="23" placeholder="Hours" required />
+    <input type="number" id="subtopicMinutes" min="0" max="59" placeholder="Minutes" required />
+  </div>
+
+  <button type="submit">Add Exam</button>
+</form>
+
+<div style="max-width:600px; margin:20px auto; text-align:center;">
+  <button id="showPlansBtn">Show Previous Plans</button>
+</div>
+
+<div id="plansContainer"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

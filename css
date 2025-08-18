@@ -1,0 +1,115 @@
+/* styles.css */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9faff;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+h1 {
+  text-align: center;
+  color: #2c3e50;
+}
+form {
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #ddd;
+}
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+}
+input[type="text"],
+input[type="date"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+input[type="number"] {
+  max-width: 100px;
+}
+.time-inputs {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 5px;
+}
+button {
+  margin-top: 15px;
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #3498db;
+}
+#plansContainer {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.plan {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 8px #ccc;
+}
+.plan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.plan-header h3 {
+  margin: 0;
+}
+.delete-btn {
+  background: #e74c3c;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+.delete-btn:hover {
+  background: #c0392b;
+}
+.flowchart {
+  margin-top: 15px;
+}
+.topic {
+  border: 2px solid #2980b9;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 10px 0;
+  background: #ecf6fc;
+}
+.subtopic {
+  margin-left: 20px;
+  padding: 8px;
+  border-left: 3px solid #3498db;
+  background: #d6eaf8;
+  margin-top: 6px;
+}
+@media (max-width: 640px) {
+  .time-inputs {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  input[type="number"] {
+    max-width: 100%;
+  }
+}

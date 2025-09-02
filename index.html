@@ -1,49 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Exam Countdown & Study Planner</title>
-<link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8" />
+  <title>Table-Driven Reflex Agent — Vacuum World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Link CSS -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <header>
+    <h1>Vacuum World — Table-Driven Reflex Agent</h1>
+    <span class="tag">No search • No planning • Lookup only</span>
+  </header>
 
-<h1>Exam Countdown & Study Planner</h1>
+  <main class="container">
+    <!-- Controls -->
+    <section class="card">
+      <h2>Controls</h2>
+      <div class="content">
+        <div class="row">
+          <div>
+            <label for="roomA">Room A status</label>
+            <select id="roomA">
+              <option>Dirty</option>
+              <option selected>Clean</option>
+            </select>
+          </div>
+          <div>
+            <label for="roomB">Room B status</label>
+            <select id="roomB">
+              <option selected>Dirty</option>
+              <option>Clean</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="startLoc">Starting location</label>
+            <select id="startLoc">
+              <option selected>A</option>
+              <option>B</option>
+            </select>
+          </div>
+          <div>
+            <label for="steps">Steps to simulate</label>
+            <input type="number" id="steps" min="1" max="50" value="6" />
+          </div>
+        </div>
+        <div class="btns">
+          <button class="primary" id="run">Run Simulation</button>
+          <button class="success" id="stepOnce">Step Once</button>
+          <button class="muted" id="reset">Reset</button>
+          <button class="danger" id="clearLog">Clear Log</button>
+        </div>
+        <p class="hint">Tip: “Suck” cleans the current room. Clean → move toward the other room.</p>
+      </div>
+    </section>
 
-<form id="examForm">
-  <label for="examName">Exam Name</label>
-  <input type="text" id="examName" required />
+    <!-- Lookup Table -->
+    <section class="card">
+      <h2>Agent Lookup Table</h2>
+      <div class="content">
+        <table class="table" aria-label="Percept to Action Table">
+          <thead>
+            <tr><th>Percept (Status, Location)</th><th>Action</th></tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr><td>(Dirty, A)</td><td>Suck</td></tr>
+            <tr><td>(Dirty, B)</td><td>Suck</td></tr>
+            <tr><td>(Clean, A)</td><td>MoveRight</td></tr>
+            <tr><td>(Clean, B)</td><td>MoveLeft</td></tr>
+          </tbody>
+        </table>
+        <p class="hint">This is a classic Table-Driven Reflex Agent: action = lookup(percept).</p>
+      </div>
+    </section>
 
-  <label for="examDate">Exam Date</label>
-  <input type="date" id="examDate" required />
+    <!-- World -->
+    <section class="card" style="grid-column:1 / -1">
+      <h2>World</h2>
+      <div class="world" id="world">
+        <div class="room" id="roomABox">
+          <h3>Room A</h3>
+          <span class="badge"><span class="status" id="statusA">Clean</span></span>
+          <div class="agent" id="agentA" style="display:none">🧹</div>
+        </div>
+        <div class="room" id="roomBBox">
+          <h3>Room B</h3>
+          <span class="badge"><span class="status" id="statusB">Dirty</span></span>
+          <div class="agent" id="agentB" style="display:none">🧹</div>
+        </div>
+        <div class="card" style="grid-column:1 / -1; margin-top:4px;">
+          <h2>Simulation Log</h2>
+          <div class="log" id="log" aria-live="polite" aria-atomic="false"></div>
+        </div>
+      </div>
+    </section>
 
-  <label for="topics">Study Topics (comma-separated)</label>
-  <input type="text" id="topics" placeholder="e.g., Algebra, Geometry" required />
+    <p class="footer">Made for learning: percept → action via a fixed table (no BFS/DFS).</p>
+  </main>
 
-  <label for="subtopics">Sub-topics (comma-separated, per topic, semicolon-separated)</label>
-  <textarea id="subtopics" rows="3" placeholder="For example: topic1_sub1, topic1_sub2; topic2_sub1, topic2_sub2" required></textarea>
-
-  <label>Study Time Per Topic</label>
-  <div class="time-inputs">
-    <input type="number" id="topicHours" min="0" max="23" placeholder="Hours" required />
-    <input type="number" id="topicMinutes" min="0" max="59" placeholder="Minutes" required />
-  </div>
-
-  <label>Study Time Per Sub-topic</label>
-  <div class="time-inputs">
-    <input type="number" id="subtopicHours" min="0" max="23" placeholder="Hours" required />
-    <input type="number" id="subtopicMinutes" min="0" max="59" placeholder="Minutes" required />
-  </div>
-
-  <button type="submit">Add Exam</button>
-</form>
-
-<div style="max-width:600px; margin:20px auto; text-align:center;">
-  <button id="showPlansBtn">Show Previous Plans</button>
-</div>
-
-<div id="plansContainer"></div>
-
-<script src="script.js"></script>
+  <!-- Link JS -->
+  <script src="script.js"></script>
 </body>
 </html>
+
